@@ -15,3 +15,13 @@ Step 2:
 Verify in the command line if pytest runs all your unit tests or not
 
 
+Testing Javascript
+We will use jest framework to run all our javascrpt test cases. 
+
+Step 1:
+`` cd path/to/test_javascript_directory ``
+Step 2:
+``npm run test``
+
+
+

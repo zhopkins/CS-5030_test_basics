@@ -16,7 +16,7 @@ jobs:
           name: current directory
           command: pwd
   build-and-test-javascript:
-     working_directory: ~/project/CS-5030_test_basics/test_javascript
+     working_directory: ~/project
      docker:
        - image: cimg/node:14.20.0
      steps:

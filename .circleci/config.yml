@@ -16,20 +16,16 @@ jobs:
           name: current directory
           command: pwd
   build-and-test-javascript:
-     working_directory: ~/project
+     working_directory: ~/project/test_javascript
      docker:
        - image: cimg/node:14.20.0
      steps:
        - checkout
-       - restore_cache:
-           key: dependency-cache-{{ checksum "package-lock.json" }}
+      
        - run:
            name: install dependencies
            command: npm install
-       - save_cache:
-           key: dependency-cache-{{ checksum "package-lock.json" }}
-           paths:
-             - ./node_modules
+      
        - run:
            name: run javascript tests
            command: npm run test

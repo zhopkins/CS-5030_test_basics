@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   python: circleci/python@2.0.3
 jobs:
-  build-and-test-backend:
+  build-and-test-python:
     docker:
       - image: cimg/python:3.10.4
     steps:
@@ -12,26 +12,27 @@ jobs:
       - run:
           name: Run tests
           command: pytest
-    build-and-test-frontend:
-      working_directory: ~/test_javascript
-      docker:
-        - image: cimg/node:14.20.0
-      steps:
-        - checkout
-        - restore_cache:
-            key: dependency-cache-{{ checksum "package-lock.json" }}
-        - run:
-            name: install dependencies
-            command: npm install
-        - save_cache:
-            key: dependency-cache-{{ checksum "package-lock.json" }}
-            paths:
-              - ./node_modules
-        - run:
-            name: run javascript tests
-            command: npm run test
+          
+   build-and-test-javascript:
+     working_directory: ~/test_javascript
+     docker:
+       - image: cimg/node:14.20.0
+     steps:
+       - checkout
+       - restore_cache:
+           key: dependency-cache-{{ checksum "package-lock.json" }}
+       - run:
+           name: install dependencies
+           command: npm install
+       - save_cache:
+           key: dependency-cache-{{ checksum "package-lock.json" }}
+           paths:
+             - ./node_modules
+       - run:
+           name: run javascript tests
+           command: npm run test
 workflows:
   sample:
     jobs:
-      - build-and-test-backend
-      - build-and-test-frontend
+      - build-and-test-python
+      - build-and-test-javascript

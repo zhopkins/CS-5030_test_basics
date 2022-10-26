@@ -35,5 +35,5 @@ workflows:
         filters:
             branches:
               only:
-                - main
+                - master
       - build-and-test-javascript
